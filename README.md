@@ -125,6 +125,27 @@ Run directly without installation:
 python collect_code.py ./src --all-files
 ```
 
+### Running Tests 🧪
+
+Run the test suite:
+
+```bash
+python -m unittest test_collect_code -v
+```
+
+Or with pytest (if installed):
+
+```bash
+pytest test_collect_code.py -v
+```
+
+The test suite includes:
+- **Unit tests** for the `collect_files` function
+- **Unit tests** for CLI argument parsing
+- **Integration tests** for end-to-end scenarios
+
+All tests run automatically on every push via GitHub Actions CI/CD pipeline.
+
 ## Author 👨‍💻
 @MikhailOnyanov
 

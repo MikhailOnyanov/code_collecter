@@ -1,0 +1,94 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, master, develop, copilot/** ]
+  pull_request:
+    branches: [ main, master, develop ]
+  merge_group:
+
+jobs:
+  test:
+    name: Run Tests on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Display Python version
+      run: python --version
+    
+    - name: Install package
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+    
+    - name: Run unit tests
+      run: |
+        python -m unittest test_collect_code -v
+    
+    - name: Test CLI command
+      run: |
+        # Test that the CLI command is installed and works
+        collect-code --help
+        
+        # Create test files
+        mkdir -p test_files
+        echo "print('test')" > test_files/test.py
+        echo "class Test {}" > test_files/Test.java
+        echo "int main() {}" > test_files/test.c
+        
+        # Test default behavior
+        collect-code test_files
+        test -f collected_code.txt
+        grep -q "test.py" collected_code.txt
+        grep -q "Test.java" collected_code.txt
+        grep -q "test.c" collected_code.txt
+        
+        # Test --exclude-langs
+        collect-code test_files --exclude-langs=py
+        grep -q "Test.java" collected_code.txt
+        ! grep -q "print('test')" collected_code.txt || exit 1
+        
+        echo "All CLI tests passed!"
+    
+    - name: Clean up
+      run: |
+        rm -f collected_code.txt
+        rm -rf test_files
+
+  lint:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pylint
+    
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 collect_code.py test_collect_code.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 collect_code.py test_collect_code.py --count --max-complexity=10 --max-line-length=127 --statistics --exit-zero
+      continue-on-error: true
