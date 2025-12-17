@@ -118,7 +118,7 @@ def main():
     if args.exclude_langs:
         # Split by comma and normalize extensions (add leading dot if missing)
         raw_extensions = [ext.strip() for ext in args.exclude_langs.split(",")]
-        exclude_extensions = {ext if ext.startswith(".") else f".{ext}" for ext in raw_extensions if ext}
+        exclude_extensions = {ext if ext.startswith(".") else f".{ext}" for ext in raw_extensions if ext.strip()}
 
     # Define output file path
     output_file = Path(os.getcwd()) / "collected_code.txt"
