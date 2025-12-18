@@ -1,4 +1,6 @@
-# Collect Code
+# Code collecter 
+
+![code_collecter_logo](/assets/code_collecter_logo.png)
 
 A script to collect source code from multiple directories into a single text file. Perfect for code analysis, sharing projects with AI chatbots, archiving, or creating context for refactoring!
 
@@ -18,7 +20,15 @@ A script to collect source code from multiple directories into a single text fil
 1. Make sure you have **Python 3.7+** installed 🐍
 2. Clone this repo or copy the files
 
-### Install with uv (recommended) ⚡
+### Prefered: Install with pipx – CLI tools 🧰
+
+```bash
+pipx install .
+```
+
+> 💡 `pipx` ensures isolated, system-wide access to the CLI tool without polluting your global Python environment.
+
+### Install with uv (recommended for .venv) ⚡
 
 ```bash
 uv pip install .
@@ -31,14 +41,6 @@ pip install .
 ```
 
 After installation, use the `collect-code` command from anywhere! 🚀
-
-### Optional: Install with pipx (recommended for CLI tools) 🧰
-
-```bash
-pipx install .
-```
-
-> 💡 `pipx` ensures isolated, system-wide access to the CLI tool without polluting your global Python environment.
 
 ## Usage 🚀
 
@@ -179,6 +181,5 @@ All tests run automatically on every push via GitHub Actions CI/CD pipeline.
 ## Author 👨‍💻
 @MikhailOnyanov
 
-Created to simplify code sharing with AI chat interfaces and streamline project analysis. 💬 🧠
+Created to simplify code sharing with AI chat interfaces and streamline project analysis. 💬 
 
-✨ *Because sometimes, the best way to explain code is to send it all at once.*
