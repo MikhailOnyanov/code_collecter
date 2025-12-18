@@ -7,13 +7,13 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="collect_code",
-    version="1.0.0",  
+    version="1.0.5",
     description="A CLI tool to collect source code from multiple directories into a single file",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Mikhail Onyanov",
     author_email="mihacool3@gmail.com",
-    url="https://github.com/MikhailOnyanov/code_collecter",
+    url="https://github.com/MikhailOnyanov/code-collector",
     py_modules=["collect_code"],
     entry_points={
         "console_scripts": [
@@ -38,7 +38,7 @@ setup(
     ],
     keywords="code-collection, cli, python, ai-assistant, code-analysis",
     project_urls={
-        "Bug Reports": "https://github.com/MikhailOnyanov/code_collecter/issues",
-        "Source": "https://github.com/MikhailOnyanov/code_collecter",
+        "Bug Reports": "https://github.com/MikhailOnyanov/code-collector/issues",
+        "Source": "https://github.com/MikhailOnyanov/code-collector",
     },
 )

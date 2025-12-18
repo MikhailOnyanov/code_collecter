@@ -1,6 +1,7 @@
-# Code collecter 
+# Code-Collector 
 
-![code_collecter_logo](/assets/code_collecter_logo.png)
+<img src="./assets/code_collector_logo.png" alt="code_collector_logo" width="250"/>
+
 
 A script to collect source code from multiple directories into a single text file. Perfect for code analysis, sharing projects with AI chatbots, archiving, or creating context for refactoring!
 
@@ -20,7 +21,18 @@ A script to collect source code from multiple directories into a single text fil
 1. Make sure you have **Python 3.7+** installed 🐍
 2. Clone this repo or copy the files
 
-### Prefered: Install with pipx – CLI tools 🧰
+
+### macOS (Homebrew) 🍎
+
+```bash
+brew install MikhailOnyanov/code-collector/code-collector
+```
+
+### Pip-like installations
+
+Pick one of the options below depending on your workflow.
+
+### Preferred: Install with pipx – CLI tools 🧰
 
 ```bash
 pipx install .
@@ -39,6 +51,7 @@ uv pip install .
 ```bash
 pip install .
 ```
+
 
 After installation, use the `collect-code` command from anywhere! 🚀
 
